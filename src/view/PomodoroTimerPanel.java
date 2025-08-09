@@ -5,12 +5,17 @@
 package view;
 import javax.swing.*;
 import java.awt.*;
+import model.PomodoroModel;
 /**
  *
  * @author Junayed
  */
 public class PomodoroTimerPanel extends JPanel{
     
+    private JLabel sessionTitle;
+    private JLabel timeLabel;
+    private JButton startButton, pauseButton, resetButton;
+
     public PomodoroTimerPanel(){
         
         // Layout for Pomodoro panel
@@ -24,7 +29,7 @@ public class PomodoroTimerPanel extends JPanel{
         
         
         // Title panel
-        JLabel sessionTitle = new JLabel("〜〜  WORK SESSION 1 of 4!  〜〜", JLabel.CENTER);
+        sessionTitle = new JLabel("O.O WORK SESSION: 1", JLabel.CENTER);
         
         titlePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 35, 35));
 
@@ -39,7 +44,7 @@ public class PomodoroTimerPanel extends JPanel{
         
         
         // sessionPanel
-        JLabel timeLabel = new JLabel("25:00", JLabel.CENTER);
+        timeLabel = new JLabel("25:00", JLabel.CENTER);
         
         sessionPanel.setLayout(new BorderLayout());
         sessionPanel.setBackground(new Color(150, 200, 220));
@@ -57,9 +62,9 @@ public class PomodoroTimerPanel extends JPanel{
         btnPanel.setPreferredSize(new Dimension(600, 100));
         btnPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 25, 25));
 
-        JButton startButton = new JButton("▶ START");
-        JButton pauseButton = new JButton("⏸ PAUSE");
-        JButton resetButton = new JButton("🔄 RESET");
+        startButton = new JButton("▶ START");
+        pauseButton = new JButton("⏸ PAUSE");
+        resetButton = new JButton("🔄 RESET");
 
         
         // styiling buttons
@@ -100,6 +105,47 @@ public class PomodoroTimerPanel extends JPanel{
         
         
     }
+    
+    
+    
+    public void updateTime(int totalSeconds){
+        int min = totalSeconds/60;
+        int sec = totalSeconds%60;
+        timeLabel.setText(String.format("%02d:%02d", min, sec));
+        
+    }
+    
+
+    public void sessionUpdate(String sessionType, int sessionCounter){
+        sessionTitle.setText(sessionType + " SESSION: " + sessionCounter);
+    }
+    
+    
+   
+    // getter functions for components
+    public JButton getStartButton() {
+        return startButton;
+    }
+
+    public JButton getPauseButton() {
+        return pauseButton;
+    }
+
+    public JButton getResetButton() {
+        return resetButton;
+    }
+
+    public JLabel getSessionTitle() {
+        return sessionTitle;
+    }
+
+    public JLabel getTimeLabel() {
+        return timeLabel;
+    }
+    
+    
+    
+    
     
     
 }

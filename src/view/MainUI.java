@@ -5,7 +5,8 @@
 package view;
 import javax.swing.*;
 import java.awt.*;
-
+import model.PomodoroModel;
+import controller.PomodoroController;
 
 /**
  *
@@ -41,6 +42,9 @@ public class MainUI extends JFrame{
         tabs.add("Notes", notePanel);
         tabs.add("Stats", statsPanel);
         
+        // Pomodoro Features
+        PomodoroModel model = new PomodoroModel();
+        new PomodoroController(model, timerPanel);
         
         
         
