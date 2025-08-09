@@ -13,22 +13,33 @@ import java.awt.*;
  */
 public class MainUI extends JFrame{
     
+    private JTabbedPane tabs;
+    private TaskPanel taskPanel;
+    private NotePanel notePanel;
+    private PomodoroTimerPanel timerPanel;
+    private StatsPanel statsPanel;
+    
     public MainUI(){
         
         // Initializing the window
-        setSize(800, 600);
+        setSize(1000, 600);
         setTitle("A Productivity App");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         
         // Initializing the Tabs
-        JTabbedPane tabs = new JTabbedPane();
-        
+        tabs = new JTabbedPane();
+        taskPanel = new TaskPanel();
+        notePanel = new NotePanel();
+        timerPanel = new PomodoroTimerPanel();
+        statsPanel = new StatsPanel();
         
         // Connecting tabs with panels
-        tabs.add("Pomodoro", new PomodoroTimerPanel());
-        tabs.add("Tasks", new TaskPanel());
+        tabs.add("Pomodoro", timerPanel);
+        tabs.add("Tasks", taskPanel);
+        tabs.add("Notes", notePanel);
+        tabs.add("Stats", statsPanel);
         
         
         
