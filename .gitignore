@@ -2,7 +2,7 @@
 build/
 dist/
 
-# NetBeans private config (contains local file paths)
+# NetBeans private config (contains local file path)
 nbproject/private/
 
 # Compiled class files
