@@ -12,9 +12,9 @@ import view.PomodoroTimerPanel;
  */
 public class PomodoroModel {
 //    private boolean isWorkSession = true;
-    private int workDuration = 1*60;
+    private int workDuration = 25*60;
     private int timeLeft = workDuration;
-    private int shortBreakDuration = 1*60;
+    private int shortBreakDuration = 25*60;
     private int longBreakDuration = 15*60;
     private int workSessionCounter = 1;
     private String sessionType = "O.O WORK";
