@@ -43,7 +43,7 @@ public class MainUI extends JFrame{
         tabs.add("Stats", statsPanel);
         
         // Pomodoro Features
-        PomodoroModel model = new PomodoroModel();
+        PomodoroModel model = new PomodoroModel(timerPanel);
         new PomodoroController(model, timerPanel);
         
         

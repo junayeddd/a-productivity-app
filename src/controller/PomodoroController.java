@@ -21,6 +21,9 @@ public class PomodoroController {
         this.model = model;
         this.view = view;
         
+        // Disabling pause button at start
+        view.getPauseButton().setEnabled(false);
+        
         // for every 1 sec call this function to update timer
         swingTimer = new Timer(1000, e -> updateTimer());
         
@@ -30,13 +33,15 @@ public class PomodoroController {
         view.getResetButton().addActionListener(e -> resetTimer());
         
         
+        
     }
-    
+   
     
     // Fucntions for button events
     private void startTimer(){
         swingTimer.start();
         view.getStartButton().setEnabled(false); // disable the start btn at start
+        view.getPauseButton().setEnabled(true); // enable pause button after start
     }
     
     private void pauseTimer(){
@@ -58,15 +63,17 @@ public class PomodoroController {
         swingTimer.stop();
         model.resetWorkSession();
         model.setWorkSessionCounter(1);
-        view.updateTime(model.getTimeLeft());
-        view.sessionUpdate(model.getSessionType(), model.getWorkSessionCounter());
+        model.updateTime(model.getTimeLeft());
+        model.sessionUpdate(model.getSessionType(), model.getWorkSessionCounter());
         view.getStartButton().setEnabled(true);
+        view.getPauseButton().setEnabled(false);
+        view.getPauseButton().setText("⏸ PAUSE");
         
     }
     
     private void updateTimer(){
         model.countdown();
-        view.updateTime(model.getTimeLeft());
+        model.updateTime(model.getTimeLeft());
         if(model.timeEnds()){
             switchSession();
         }
@@ -91,8 +98,8 @@ public class PomodoroController {
             model.resetWorkSession();
         }
         
-        view.sessionUpdate(model.getSessionType(), model.getWorkSessionCounter());
-        view.updateTime(model.getTimeLeft());
+        model.sessionUpdate(model.getSessionType(), model.getWorkSessionCounter());
+        model.updateTime(model.getTimeLeft());
         swingTimer.start();
     }
     

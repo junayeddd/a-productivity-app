@@ -4,6 +4,8 @@
  */
 package model;
 
+import view.PomodoroTimerPanel;
+
 /**
  *
  * @author Junayed
@@ -16,6 +18,27 @@ public class PomodoroModel {
     private int longBreakDuration = 15*60;
     private int workSessionCounter = 1;
     private String sessionType = "O.O WORK";
+    
+    
+    private PomodoroTimerPanel view;
+
+    public PomodoroModel(PomodoroTimerPanel view) {
+        this.view = view;
+    }
+    
+    // Logic to update time
+    public void updateTime(int totalSeconds){
+        int min = totalSeconds/60;
+        int sec = totalSeconds%60;
+        view.getTimeLabel().setText(String.format("%02d:%02d", min, sec));
+        
+    }
+    
+    // Logic to update session type and number
+    public void sessionUpdate(String sessionType, int sessionCounter){
+        view.getSessionTitle().setText(sessionType + " SESSION: " + sessionCounter);
+    }
+    
     
     
     // Switiching between sessions
@@ -32,6 +55,8 @@ public class PomodoroModel {
         sessionType = "UwU LONG BREAK";
         timeLeft = longBreakDuration;
     }
+    
+    
     
     
     // Timer countdown functionality
@@ -52,7 +77,10 @@ public class PomodoroModel {
     
     
     
-    // getter functions   
+   
+    
+    
+    // getter and setter functions   
 
     public int getTimeLeft() {
         return timeLeft;

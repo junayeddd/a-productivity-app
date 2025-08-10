@@ -106,22 +106,7 @@ public class PomodoroTimerPanel extends JPanel{
         
     }
     
-    
-    
-    public void updateTime(int totalSeconds){
-        int min = totalSeconds/60;
-        int sec = totalSeconds%60;
-        timeLabel.setText(String.format("%02d:%02d", min, sec));
-        
-    }
-    
 
-    public void sessionUpdate(String sessionType, int sessionCounter){
-        sessionTitle.setText(sessionType + " SESSION: " + sessionCounter);
-    }
-    
-    
-   
     // getter functions for components
     public JButton getStartButton() {
         return startButton;
