@@ -49,6 +49,9 @@ public class MainUI extends JFrame{
         
         
         
+        
+        
+        
         //adding tabs to the Window
         add(tabs);
         

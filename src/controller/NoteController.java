@@ -53,7 +53,8 @@ public class NoteController {
             return;
         }
 
-        int id = notes.getAllNotes().size() + 1;
+//        int id = notes.getAllNotes().size() + 1;
+        int id = 1;
         NoteModel note = new NoteModel(content, category, id, content);
 //        noteManager.addNote(note);
 
@@ -67,7 +68,7 @@ public class NoteController {
         view.getTitleField().setText("");
         view.getContentArea().setText("");
     }
-    
+
     
 }
 
