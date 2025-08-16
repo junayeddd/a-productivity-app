@@ -23,7 +23,7 @@ public class PomodoroController {
         
         // Disabling pause button at start
         view.getPauseButton().setEnabled(false);
-        
+        view.getSkipButton().setEnabled(false); // disable the skip btn at start
         // for every 1 sec call this function to update timer
         swingTimer = new Timer(1000, e -> updateTimer());
         
@@ -31,6 +31,7 @@ public class PomodoroController {
         view.getStartButton().addActionListener(e -> startTimer());
         view.getPauseButton().addActionListener(e -> pauseTimer());
         view.getResetButton().addActionListener(e -> resetTimer());
+        view.getSkipButton().addActionListener(e -> skipTimer());
         
         
         
@@ -41,7 +42,12 @@ public class PomodoroController {
     private void startTimer(){
         swingTimer.start();
         view.getStartButton().setEnabled(false); // disable the start btn at start
+        view.getSkipButton().setEnabled(true); // enable the skip btn after start
         view.getPauseButton().setEnabled(true); // enable pause button after start
+    }
+    
+    private void skipTimer(){
+        switchSession();
     }
     
     private void pauseTimer(){
@@ -67,6 +73,7 @@ public class PomodoroController {
         model.sessionUpdate(model.getSessionType(), model.getWorkSessionCounter());
         view.getStartButton().setEnabled(true);
         view.getPauseButton().setEnabled(false);
+        view.getSkipButton().setEnabled(false);
         view.getPauseButton().setText("⏸ PAUSE");
         
     }

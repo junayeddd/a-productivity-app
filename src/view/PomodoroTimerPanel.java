@@ -14,7 +14,7 @@ public class PomodoroTimerPanel extends JPanel{
     
     private JLabel sessionTitle;
     private JLabel timeLabel;
-    private JButton startButton, pauseButton, resetButton;
+    private JButton startButton, pauseButton, resetButton, skipButton;
 
     public PomodoroTimerPanel(){
         
@@ -65,6 +65,7 @@ public class PomodoroTimerPanel extends JPanel{
         startButton = new JButton("▶ START");
         pauseButton = new JButton("⏸ PAUSE");
         resetButton = new JButton("🔄 RESET");
+        skipButton = new JButton("️⏯️ SKIP");
 
         
         // styiling buttons
@@ -91,10 +92,19 @@ public class PomodoroTimerPanel extends JPanel{
         resetButton.setBorderPainted(false);
         resetButton.setFont(new Font("SansSerif", Font.BOLD, 18));
         
+        skipButton.setMargin(new Insets(8, 20, 8, 20));
+        skipButton.setToolTipText("Reset the Pomodoro Counter");
+        skipButton.setFocusable(false);
+        skipButton.setForeground(new Color(255, 255, 255));
+        skipButton.setBackground(new Color(200, 100, 200));
+        skipButton.setBorderPainted(false);
+        skipButton.setFont(new Font("SansSerif", Font.BOLD, 18));
+        
         // Adding componets in btn panel
         btnPanel.add(startButton);
         btnPanel.add(pauseButton);
         btnPanel.add(resetButton);
+        btnPanel.add(skipButton);
         
         
         
@@ -119,6 +129,11 @@ public class PomodoroTimerPanel extends JPanel{
     public JButton getResetButton() {
         return resetButton;
     }
+
+    public JButton getSkipButton() {
+        return skipButton;
+    }
+    
 
     public JLabel getSessionTitle() {
         return sessionTitle;
