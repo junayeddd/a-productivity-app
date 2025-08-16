@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package view;
 import model.TaskModel;
 import java.awt.*;
@@ -43,76 +39,20 @@ public class TaskPanel extends JPanel{
    
     
     public TaskPanel(){
-        //title and stats labelling
-        titlelabel= new JLabel("📋 TASK MANAGER",JLabel.CENTER);
-        statslabel= new JLabel("TASKS:0   COMPLETED:0   PENDING:0",JLabel.CENTER);
-        statuslabel = new JLabel("Current Status");
-        
-        
-        //task input components labelling
-        taskTitleField = new JTextField(20);
-        taskDescriptionArea = new JTextArea(3, 20);
-        taskTypePriority = new JComboBox<>(new String[]{"REGULAR", "PRIORITY", "DEADLINE"});
-        prioritySpinner = new JSpinner (new SpinnerNumberModel(3, 1, 5, 1));
-        addTaskButton = new JButton("➕ ADD TASK");
-        
-        //task list
-        taskListModel=new DefaultListModel<>();
-        taskList = new JList<>(taskListModel);
-        taskScrollPanel = new JScrollPane(taskList);
-        
-        //control buttons 
-        completeButton = new JButton("✓ COMPLETE");
-        deleteButton = new JButton("🗑 DELETE");
-        editButton = new JButton("✏ EDIT");
-        
-        //filter and sort buttons
-        filter = new JComboBox<>(new String[]{"ALL TASKS", "PENDING", "COMPLETED", "PRIORRITY", "DEADLINE"});
-        sort = new JComboBox<>(new String[]{"BY DATE", "BY PRIORITY", "BY TYPE"});
-        
-        //file operations 
-        save = new JButton("💾 SAVE");
-        load = new JButton("📁 LOAD");
-        
-        
-        
-        setLayout(new BorderLayout(10,10));
-        // Top panel - Title and stats
-        JPanel topPanel = createTopPanel();
-        
-        // left panel - add new task/input task
-        JPanel leftPanel = createLeftPanel();
-        
-        //center panel - filter, sort, task list
-        JPanel centerPanel = createCenterPanel();
-        
-        // right panel - actions(complete, edit, delete)
-        JPanel rightPanel = createRightPanel();
-        
-        //bottom panel - save and load
-        JPanel bottomPanel = createBottomPanel();
-        
-        //add panels to main layout
-        add(topPanel, BorderLayout.NORTH);
-        add(leftPanel, BorderLayout.WEST);
-        add(centerPanel, BorderLayout.CENTER);
-        add(rightPanel, BorderLayout.EAST);
-        add(bottomPanel, BorderLayout.SOUTH);
-        
-        
-        
-        
-        
-        
-        
-        
+        // FIX: Call all initialization methods in constructor
+        initializeComponents();
+        layoutComponents();
+        styleComponents();
+     
     }
-    /*
+    
     private void initializeComponents()
     {
         //title and stats labelling
         titlelabel= new JLabel("📋 TASK MANAGER",JLabel.CENTER);
         statslabel= new JLabel("TASKS:0   COMPLETED:0   PENDING:0",JLabel.CENTER);
+        // FIX: Initialize status label
+        statuslabel = new JLabel("Ready", JLabel.LEFT);
         
         //task input components labelling
         taskTitleField = new JTextField(20);
@@ -132,21 +72,17 @@ public class TaskPanel extends JPanel{
         editButton = new JButton("✏ EDIT");
         
         //filter and sort buttons
-        filter = new JComboBox<>(new String[]{"ALL TASKS", "PENDING", "COMPLETED", "PRIORRITY", "DEADLINE"});
+        // FIX: Corrected "PRIORRITY" to "PRIORITY"
+        filter = new JComboBox<>(new String[]{"ALL TASKS", "PENDING", "COMPLETED", "PRIORITY", "DEADLINE"});
         sort = new JComboBox<>(new String[]{"BY DATE", "BY PRIORITY", "BY TYPE"});
         
         //file operations 
         save = new JButton("💾 SAVE");
         load = new JButton("📁 LOAD");
-        
-        
-        
-        
     }
-    */
     
-     /*
-    private void LayoutComponents ()
+    // FIX: Renamed method to match call in constructor
+    private void layoutComponents ()
     {
         setLayout(new BorderLayout(10,10));
         // Top panel - Title and stats
@@ -170,12 +106,9 @@ public class TaskPanel extends JPanel{
         add(centerPanel, BorderLayout.CENTER);
         add(rightPanel, BorderLayout.EAST);
         add(bottomPanel, BorderLayout.SOUTH);
-        
-        //
-        
     }
-    */
     
+    //
     private JPanel createTopPanel()
     {
         JPanel panel = new JPanel(new BorderLayout());
@@ -185,7 +118,6 @@ public class TaskPanel extends JPanel{
         
         panel.add(titlelabel,BorderLayout.NORTH );
         panel.add(statslabel,BorderLayout.CENTER );
-        
         
         return panel;
     }
@@ -206,7 +138,6 @@ public class TaskPanel extends JPanel{
         titlePanel.add(taskTitleField);
         
         //description input
-        
         JPanel descriptionPanel = new JPanel(new BorderLayout());
         descriptionPanel.setBackground(new Color(245,250,255));
         descriptionPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -216,7 +147,6 @@ public class TaskPanel extends JPanel{
         descriptionPanel.add(new JScrollPane(taskDescriptionArea), BorderLayout.CENTER);
         
         //type and priority
-        
         JPanel typePanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         typePanel.setBackground(new Color(245,250,255));
         typePanel.add(new JLabel("TYPE:"));
@@ -230,10 +160,17 @@ public class TaskPanel extends JPanel{
         //Add button
         JPanel buttonPanel = new JPanel(new FlowLayout());
         buttonPanel.setBackground(new Color(245,250,255));
-        priorityPanel.add(addTaskButton);
+        //Add button to buttonPanel, not priorityPanel
+        buttonPanel.add(addTaskButton);
         
+        //Add all panels to the main panel
+        panel.add(titlePanel);
+        panel.add(descriptionPanel);
+        panel.add(typePanel);
+        panel.add(priorityPanel);
+        panel.add(buttonPanel);
         
-     return panel;
+        return panel;
     }
     
     private JPanel createCenterPanel()
@@ -247,7 +184,7 @@ public class TaskPanel extends JPanel{
         filterPanel.setBackground(new Color(240,245,255));
         filterPanel.add(new JLabel("FILTER:"));
         filterPanel.add(filter);
-        filterPanel.add(new JLabel("SORT"));
+        filterPanel.add(new JLabel("SORT:"));
         filterPanel.add(sort);
         
         //task list setup
@@ -257,9 +194,7 @@ public class TaskPanel extends JPanel{
         panel.add(filterPanel, BorderLayout.NORTH);
         panel.add(taskScrollPanel, BorderLayout.CENTER);
         
-        
-        
-    return panel;
+        return panel;
     }
     
     
@@ -269,7 +204,7 @@ public class TaskPanel extends JPanel{
         panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
         panel.setBackground(new Color(245,250,255));
         panel.setPreferredSize(new Dimension(150,400));
-        panel.setBorder(new TitledBorder("ACTIONS:"));
+        panel.setBorder(new TitledBorder("ACTIONS"));
         
         //add spacing between buttons
         panel.add(Box.createVerticalStrut(10));
@@ -280,9 +215,7 @@ public class TaskPanel extends JPanel{
         panel.add(editButton);
         panel.add(Box.createVerticalGlue());
         
-        
-        
-     return panel;
+        return panel;
     }
     
     
@@ -302,14 +235,8 @@ public class TaskPanel extends JPanel{
         panel.add(statuslabel,BorderLayout.WEST);
         panel.add(filePanel, BorderLayout.EAST);
         
-        
-        
-        
-     return panel;
+        return panel;
     }
-    
-    
-    
     
     private void styleComponents() {
         // Title styling (matching PomodoroTimerPanel style)
@@ -356,20 +283,6 @@ public class TaskPanel extends JPanel{
         button.setPreferredSize(new Dimension(120, 30));
     }
     
-    private void setupEventHandlers() {
-        // Double-click on task list to toggle completion
-        taskList.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
-                    int selectedIndex = taskList.getSelectedIndex();
-                    if (selectedIndex != -1) {
-                        // This will be handled by the controller
-                    }
-                }
-            }
-        });
-    }
     
     // Public methods for updating UI (called by Controller and Model)
     public void updateTaskList(List<TaskModel> tasks) {

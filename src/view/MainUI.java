@@ -3,10 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package view;
+//import controller.NoteController;
 import javax.swing.*;
 import java.awt.*;
 import model.PomodoroModel;
 import controller.PomodoroController;
+import controller.TaskModelController;
+import model.TaskModel;
+//import model.NoteModel;
 
 /**
  *
@@ -16,35 +20,41 @@ public class MainUI extends JFrame{
     
     private JTabbedPane tabs;
     private TaskPanel taskPanel;
-    private NotePanel notePanel;
     private PomodoroTimerPanel timerPanel;
-    private StatsPanel statsPanel;
+    private NotesView notesView;
     
     public MainUI(){
         
         // Initializing the window
-        setSize(1000, 600);
+        setSize(1400, 900);
         setTitle("A Productivity App");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         
+        
+        
+        
         // Initializing the Tabs
         tabs = new JTabbedPane();
         taskPanel = new TaskPanel();
-        notePanel = new NotePanel();
         timerPanel = new PomodoroTimerPanel();
-        statsPanel = new StatsPanel();
+        notesView = new NotesView();
+
         
         // Connecting tabs with panels
         tabs.add("Pomodoro", timerPanel);
         tabs.add("Tasks", taskPanel);
-        tabs.add("Notes", notePanel);
-        tabs.add("Stats", statsPanel);
+        tabs.add("CoursePanel", notesView);
         
-        // Pomodoro Features
-        PomodoroModel model = new PomodoroModel(timerPanel);
-        new PomodoroController(model, timerPanel);
+        // calling Pomodoro constructor 
+        PomodoroModel pomodoroModel = new PomodoroModel(timerPanel);
+        new PomodoroController(pomodoroModel, timerPanel);
+        
+        // calling Todo task constructor
+        TaskModel taskModel = new TaskModel();
+        TaskModelController taskController = new TaskModelController(taskModel, taskPanel);
+        
         
         
         

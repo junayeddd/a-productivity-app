@@ -11,26 +11,18 @@ import java.time.LocalDate;
  */
 
 public abstract class EntryModel {
-    private int id;
+
     private String title;
     private LocalDate createdDate; // for TaskModel
     
     // Constructor
-    public EntryModel(int id, String title) {
-        this.id = id;
+    public EntryModel(String title) {
+
         this.title = title;
         this.createdDate = LocalDate.now();
     }
     
     
-     // getter and setter functions
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
