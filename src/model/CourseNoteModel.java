@@ -29,17 +29,27 @@ public class CourseNoteModel extends EntryModel{
 
     // Getter functions
 
-    public String getContent() { return content; }
-    public String getCategory() { return category; }
-    public LocalDate getCreatedDate() { return createdDate; }
+    public String getContent() { 
+        return content; 
+    }
+    public String getCategory() { 
+        return category; 
+    }
+    public LocalDate getCreatedDate() { 
+        return createdDate; 
+    }
 
     // Setters
 
-    public void setContent(String content) { this.content = content; }
-    public void setCategory(String category) { this.category = category; }
+    public void setContent(String content) { 
+        this.content = content; 
+    }
+    public void setCategory(String category) { 
+        this.category = category; 
+    }
 
    
-
+    // Method overriding function from entryModel
     @Override
     public String displayInfo() {
         return getTitle() + " (" + category + "): " + content;

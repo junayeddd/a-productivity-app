@@ -131,7 +131,8 @@ class CourseFrame extends JPanel
         // Main content area
         createMainContent();
     }
-
+    
+    // Create header UI function
     private void createHeader()
     {
         headerPanel = new JPanel(new BorderLayout());
@@ -172,7 +173,8 @@ class CourseFrame extends JPanel
         
         add(headerPanel, BorderLayout.NORTH);
     }
-
+    
+    // Creating main content UI function
     private void createMainContent()
     {
         // Grid panel for course cards with modern spacing
@@ -189,7 +191,8 @@ class CourseFrame extends JPanel
 
         add(scrollPane, BorderLayout.CENTER);
     }
-
+    
+    // creating button UI functions
     private JButton createButton(String text, Color bgColor, Color textColor)
     {
         JButton button = new JButton(text);
@@ -217,7 +220,9 @@ class CourseFrame extends JPanel
         
         return button;
     }
-
+    
+    
+    // Funtion to create Course card UI 
     public void addCourseCard(CoursePanel card)
     {
         courseCards.add(card);
@@ -260,7 +265,7 @@ class NotesPanel extends JFrame {
     private JButton deleteNoteBtn;
     private JButton saveNoteBtn;
 
-
+    // Creating container panel for notesPanel using function
     public NotesPanel(String courseName) {
         setTitle("Notes - " + courseName);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -281,7 +286,8 @@ class NotesPanel extends JFrame {
         //Notes footer Area
         createNotesFooter();
     }
-
+    
+    // Funtion to create Notes header UI
     private void createNotesHeader(String courseName) {
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setBackground(BACKGROUND);
@@ -301,6 +307,7 @@ class NotesPanel extends JFrame {
         
         add(headerPanel, BorderLayout.NORTH);
     }
+    // Funtion to create Notes footer UI
     private void createNotesFooter() {
             JPanel footerPanel = new JPanel(new BorderLayout());
             footerPanel.setBackground(BACKGROUND);
@@ -327,7 +334,7 @@ class NotesPanel extends JFrame {
         add(footerPanel, BorderLayout.SOUTH);
     }
     
-
+    // Funtion to create Notes content UI
     private void createNotesContent() {
         notesPanel = new JPanel();
         notesPanel.setLayout(new BoxLayout(notesPanel, BoxLayout.Y_AXIS));
@@ -341,7 +348,7 @@ class NotesPanel extends JFrame {
 
         add(scrollPane, BorderLayout.CENTER);
     }
-
+    // Funtion to create Notes button UI
     private JButton createButton(String text, Color bgColor, Color textColor) {
         JButton button = new JButton(text);
         button.setBackground(bgColor);
@@ -415,7 +422,7 @@ class NotesPanel extends JFrame {
 
     
     
-    
+    // funtion logic to add new notes 
     public void addNoteItem(String title, String content, String date ) {
         JPanel noteCard = new JPanel(new BorderLayout());
         noteCard.setBackground(CARD_BG);
@@ -523,7 +530,7 @@ class NotesPanel extends JFrame {
     
 
 
-// This class now returns a JPanel instead of creating a JFrame
+
 public class NotesView extends JPanel {
     private CourseFrame coursePanel;
 

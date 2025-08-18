@@ -93,7 +93,7 @@ public class PomodoroTimerPanel extends JPanel{
         resetButton.setFont(new Font("SansSerif", Font.BOLD, 18));
         
         skipButton.setMargin(new Insets(8, 20, 8, 20));
-        skipButton.setToolTipText("Reset the Pomodoro Counter");
+        skipButton.setToolTipText("Skip to next session");
         skipButton.setFocusable(false);
         skipButton.setForeground(new Color(255, 255, 255));
         skipButton.setBackground(new Color(200, 100, 200));
